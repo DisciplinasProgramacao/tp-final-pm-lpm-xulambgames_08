@@ -1,18 +1,21 @@
 import java.sql.Date;
 import java.util.ArrayList;
 
-abstract class Cliente{
+class Cliente{
     private String nome;
     private String nomeUsuario;
     private String senha;
+    private TipoCliente tipoCliente; 
     private ArrayList<Compra> historicoCompras;
 
     public Cliente(String nome, 
                     String nomeUsario,
-                    String senha){
+                    String senha,
+                    TipoCliente tipoCliente){
         this.nome = nome;
         this.nomeUsuario = nomeUsario;
         this.senha = senha;
+        this.tipoCliente = tipoCliente;
 
         historicoCompras = new ArrayList<Compra>();
     }
@@ -35,6 +38,10 @@ abstract class Cliente{
                 compra.relatorio();
             }
         }
+    }
+
+    public TipoCliente getTipoCliente() {
+        return this.tipoCliente;
     }
 
 

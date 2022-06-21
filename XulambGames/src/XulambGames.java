@@ -11,7 +11,7 @@ public class XulambGames {
     private XulambGames(){}
 
 
-    public XulambGames getInstance(){
+    public static XulambGames getInstance(){
         if (instance == null){
             instance = new XulambGames();
         } 
