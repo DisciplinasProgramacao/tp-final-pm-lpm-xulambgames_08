@@ -1,7 +1,8 @@
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.ArrayList;
 
-class Cliente{
+class Cliente implements Serializable{
     private String nome;
     private String nomeUsuario;
     private String senha;
@@ -16,7 +17,7 @@ class Cliente{
         this.nomeUsuario = nomeUsario;
         this.senha = senha;
         this.tipoCliente = tipoCliente;
-
+        System.out.println(this);
         historicoCompras = new ArrayList<Compra>();
     }
 
@@ -32,9 +33,9 @@ class Cliente{
         }
     }
 
-    public void filtrarCompraData(Date data){
+    public void filtrarCompraData(Data data){
         for (Compra compra : historicoCompras){
-            if (compra.getData() == data){
+            if (compra.getData().equals(data)){
                 compra.relatorio();
             }
         }
@@ -42,6 +43,15 @@ class Cliente{
 
     public TipoCliente getTipoCliente() {
         return this.tipoCliente;
+    }
+
+    public String getNome() {
+        return this.nome;
+    }
+
+    @Override
+    public String toString() {
+        return "Nome: " + this.nome + "\nNome usuario: " + this.nomeUsuario + "\nTipo cliente: " + this.tipoCliente;
     }
 
 

@@ -17,7 +17,7 @@ public class XulamTest {
         categoria = Categoria.REGULARES;
     	jogo = new Jogos(150, categoria, "Jogos Mortais 7");
         cliente = new Cliente("Vitor Salem", "Costinha123", "123456", TipoCliente.FANATICOS);
-        Date data = new Date(2022, 6, 19);
+        Data data = new Data(19, 6, 2022);
         compra = new Compra(data, jogo, cliente);
     }
 
@@ -64,5 +64,5 @@ public class XulamTest {
     }
 
 
-
+    
 }

@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.util.*;
 
-public class Compra {
+public class Compra implements Serializable{
     private final static double DESCONTO20;
     private final static double DESCONTO10;
 
@@ -9,18 +10,19 @@ public class Compra {
         DESCONTO10 = .9;
     }
 
-    private Date dataCompra;    
+    private Data dataCompra;    
     private ArrayList<Jogos> jogos;
     private Cliente cliente;
     private HashMap<String, Integer> categorias;
 
-    public Compra(Date dataCompra, Jogos
+    public Compra(Data dataCompra, Jogos
                   jogo, Cliente cliente) {
         this.dataCompra = dataCompra;
         this.cliente = cliente;
         this.jogos = new ArrayList<>();
         this.categorias = new HashMap<String, Integer>();
         this.adicionarJogo(jogo);
+        this.cliente.adicionarCompra(this);
     }
     
     public void adicionarJogo(Jogos jogo) {
@@ -28,6 +30,7 @@ public class Compra {
         Integer quantidade = this.quantidadeJogosPorCategoria(categoria);
         this.jogos.add(jogo);
         this.categorias.put(categoria.toString(), quantidade + 1);
+        jogo.acrescentarVenda();
     }
 
     // public void removerJogo(Jogos jogo){
@@ -41,7 +44,7 @@ public class Compra {
     // }
 
     public String relatorio() {
-        return "RELATORIO COMPRA\n Data compra: " +this.dataCompra + "\n Cliente: " + this.cliente + "\n Jogos: " + this.listaJogos() + "Valor compra: R$" + this.valorCompra();
+        return "RELATORIO COMPRA\nData compra: " +this.dataCompra.dataFormatada() + "\nCliente: " + this.cliente + "\n" + this.listaJogos() + "\nValor compra: R$" + this.valorCompra();
     }
 
     private String listaJogos(){
@@ -52,7 +55,16 @@ public class Compra {
         return lista.toString();
     }
 
-    public Date getData() {
+    @Override
+    public String toString() {
+        StringBuilder relatorio = new StringBuilder();
+        relatorio.append("\nData compra: " + this.dataCompra);
+        relatorio.append("\nCliente:" + this.cliente);
+        relatorio.append("\nJogos: " + this.listaJogos());
+        return relatorio().toString();
+    }
+
+    public Data getData() {
         return this.dataCompra;
     }
 
@@ -141,6 +153,10 @@ public class Compra {
             preco += jogo.precoFinal();
         }
         return preco;
+    }
+
+    public boolean verificarMes(int mes) {
+        return this.dataCompra.getMes() == mes;
     }
     
 }

@@ -1,8 +1,11 @@
-public class Jogos {
+import java.io.Serializable;
+
+public class Jogos implements Serializable{
     private double precoOriginal;
     private Categoria categoria;
     private String nome;
     private double precoVenda;
+    private int quantidadeVendido;
 
     public Jogos(double precoOriginal, 
              Categoria categoria, 
@@ -11,6 +14,7 @@ public class Jogos {
         this.categoria = categoria;
         this.nome = nome;
         this.precoVenda = 0;
+        this.quantidadeVendido = 0;
     }
     
 
@@ -44,7 +48,11 @@ public class Jogos {
 
     @Override
     public String toString() {
-        return "Titulo: " + this.nome + "\nPreco: R$" + this.precoFinal() + "\nCategoria: " + this.categoria;
+        StringBuilder retorno = new StringBuilder("Titulo: " + this.nome);
+        retorno.append("\nPreco: R$" + this.precoFinal());
+        retorno.append("\nCategoria: " + this.categoria);
+        retorno.append("\nQuantidade vendida= " + this.quantidadeVendido);
+        return retorno.toString();
     }
 
     public Categoria getCategoria() {
@@ -61,5 +69,13 @@ public class Jogos {
 
     public String getNome() {
         return nome;
+    }
+
+    public void acrescentarVenda(){
+        this.quantidadeVendido++;
+    }
+
+    public int getQuantidadeVendida(){
+        return this.quantidadeVendido;
     }
 }
