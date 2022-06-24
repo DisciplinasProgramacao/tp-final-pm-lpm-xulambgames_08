@@ -20,7 +20,6 @@ public class XulambGames {
         this.console = System.console();
     }
 
-
     public static XulambGames getInstance(){
         if (instance == null){
             instance = new XulambGames();

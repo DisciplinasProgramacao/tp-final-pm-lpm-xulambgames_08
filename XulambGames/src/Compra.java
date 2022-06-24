@@ -15,8 +15,9 @@ public class Compra implements Serializable{
     private Cliente cliente;
     private HashMap<String, Integer> categorias;
 
-    public Compra(Data dataCompra, Jogos
-                  jogo, Cliente cliente) {
+    public Compra(Data dataCompra, 
+                  Jogos jogo,
+                  Cliente cliente) {
         this.dataCompra = dataCompra;
         this.cliente = cliente;
         this.jogos = new ArrayList<>();
